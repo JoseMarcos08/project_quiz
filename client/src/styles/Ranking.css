@@ -1,0 +1,387 @@
+.ranking-container {
+  padding: 2rem;
+  min-height: 100vh;
+  background: var(--background-dark);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.ranking-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--background-card);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.ranking-content h1 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.ranking-tabela {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--background-card);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+/* Grid para ranking geral */
+.ranking-cabecalho {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.8fr 0.8fr 0.8fr;
+  padding: 0.75rem 0;
+  background: var(--background-light);
+  border-radius: 8px 8px 0 0;
+  font-weight: bold;
+  color: var(--text-primary);
+  text-align: center;
+  align-items: center;
+}
+
+.ranking-linha {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.8fr 0.8fr 0.8fr;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+  text-align: center;
+}
+
+/* Grid para ranking de melhor partida */
+.ranking-tabela[data-tipo="melhor"] .ranking-cabecalho,
+.ranking-tabela[data-tipo="melhor"] .ranking-linha {
+  grid-template-columns: 0.5fr 1fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr;
+}
+
+.ranking-linha:hover {
+  background: var(--background-light);
+  transition: background-color 0.2s ease;
+}
+
+.ranking-linha:last-child {
+  border-bottom: none;
+}
+
+.coluna-posicao,
+.coluna-jogador,
+.coluna-pontuacao,
+.coluna-acertos,
+.coluna-quantidade,
+.coluna-tempo {
+  padding: 0;
+  margin: 0;
+}
+
+.coluna-posicao {
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.coluna-jogador {
+  color: var(--text-primary);
+  text-align: center;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.coluna-pontuacao {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.coluna-acertos {
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+.coluna-quantidade {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.coluna-tempo {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.dificuldade {
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.dificuldade.facil {
+  background: var(--success-light);
+  color: var(--success-dark);
+}
+
+.dificuldade.medio {
+  background: var(--warning-light);
+  color: var(--warning-dark);
+}
+
+.dificuldade.dificil {
+  background: var(--danger-light);
+  color: var(--danger-dark);
+}
+
+.dificuldade.aleatorio {
+  background: var(--info-light);
+  color: var(--info-dark);
+}
+
+.filtros-container {
+  margin-bottom: 2rem;
+  background: var(--background-card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.toggle-filtros-button {
+  background: linear-gradient(to right, var(--background-card), var(--background-light));
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toggle-filtros-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filtros-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 1.5rem;
+  background: var(--background-light);
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.filtros-grupos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.filtro-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.filtro-grupo label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.filtro-grupo select {
+  width: 100%;
+  background: var(--background-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.filtro-grupo select:hover {
+  border-color: var(--primary-color);
+}
+
+.filtro-grupo select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.1);
+}
+
+.resetar-filtros-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(to right, var(--background-card), var(--background-light));
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.resetar-filtros-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.voltar-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(to right, var(--background-card), var(--background-light));
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.voltar-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.voltar-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.sem-dados {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--text-secondary);
+  background: var(--background-light);
+  border-radius: 12px;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sem-dados p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.sem-dados .resetar-filtros-button {
+  margin-top: 1rem;
+  align-self: center;
+}
+
+.carregando {
+  text-align: center;
+  padding: 3rem 2rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.erro-mensagem {
+  text-align: center;
+  padding: 2rem;
+  color: var(--error-color);
+  background: var(--error-background);
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+
+.erro-mensagem p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.tentar-novamente-button {
+  background: var(--error-color);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.tentar-novamente-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--error-rgb), 0.2);
+}
+
+@media (max-width: 768px) {
+  .ranking-container {
+    padding: 1rem;
+  }
+
+  .ranking-content {
+    padding: 1rem;
+  }
+
+  .ranking-content h1 {
+    font-size: 2rem;
+  }
+
+  .filtros-grupos {
+    grid-template-columns: 1fr;
+  }
+
+  .ranking-cabecalho,
+  .ranking-linha {
+    font-size: 0.9rem;
+    padding: 0.75rem 0;
+  }
+
+  .coluna-jogador {
+    padding-left: 0;
+  }
+
+  .dificuldade {
+    padding: 0.25rem 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .ranking-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .ranking-cabecalho,
+  .ranking-linha {
+    font-size: 0.8rem;
+    padding: 0.5rem 0;
+  }
+
+  .dificuldade {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}

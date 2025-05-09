@@ -1,0 +1,282 @@
+.dashboard-container {
+  min-height: 100vh;
+  background-color: var(--background-dark);
+  position: relative;
+}
+
+.dashboard-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 70px;
+  background-color: var(--background-light);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 2rem;
+  z-index: 1000;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.user-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background-color: var(--background-light);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.user-dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  padding: 1rem 1.5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.dropdown-item:hover {
+  background-color: var(--background-card);
+  color: var(--primary-light);
+}
+
+.dropdown-item:first-child {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dropdown-item svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-secondary);
+}
+
+.dropdown-item:hover svg {
+  color: var(--primary-light);
+}
+
+.dashboard-content {
+  padding: 90px 2rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.quiz-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.quiz-button {
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.quiz-button:hover::before {
+  left: 100%;
+}
+
+.quiz-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.quiz-button svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--background-light);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  border: 1px solid var(--border-color);
+}
+
+.modal-content h2 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.modal-content p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.modal-buttons button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.modal-buttons button:first-child {
+  background: var(--background-card);
+  color: var(--text-primary);
+}
+
+.modal-buttons button:first-child:hover {
+  background: var(--border-color);
+}
+
+.modal-buttons .confirm-button {
+  background: #dc2626 !important;
+  color: #fff !important;
+  border: none;
+}
+
+.modal-buttons .confirm-button:hover {
+  background: #b91c1c !important;
+}
+
+.modal-buttons .cancel-button {
+  background: var(--background-card) !important;
+  color: var(--text-primary) !important;
+  border: none;
+}
+
+.modal-buttons .cancel-button:hover {
+  background: var(--border-color) !important;
+}
+
+.dashboard-container .modal-button.cancelar {
+  background: #6B7280 !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.dashboard-container .modal-button.cancelar:hover {
+  background: #4B5563 !important;
+  color: #fff !important;
+}
+
+.dashboard-container .modal-button.confirmar {
+  background: #dc2626 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.dashboard-container .modal-button.confirmar:hover {
+  background: #b91c1c !important;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: 0 1rem;
+  }
+
+  .dashboard-content {
+    padding: 90px 1rem 1rem;
+  }
+
+  .quiz-button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+} 

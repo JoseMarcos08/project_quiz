@@ -1,0 +1,101 @@
+.two-factor-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--background-dark);
+    padding: 1rem;
+}
+
+.two-factor-box {
+    background: var(--background-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.two-factor-box h2 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.two-factor-box p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.two-factor-box input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--background-light);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+}
+
+.two-factor-box input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px var(--shadow-color);
+}
+
+.two-factor-box button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.two-factor-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.error-message {
+    color: var(--error-color);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.dev-code {
+    background: var(--background-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.dev-code p {
+    margin: 0.5rem 0;
+    color: var(--text-secondary);
+}
+
+.dev-code strong {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .two-factor-box {
+        padding: 1.5rem;
+    }
+} 
