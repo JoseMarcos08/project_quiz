@@ -279,4 +279,69 @@
     padding: 1rem;
     font-size: 1rem;
   }
+}
+
+/* Estilos para a página Adicionar Pergunta */
+.add-question-container {
+    min-height: 100vh;
+    background-color: var(--background-dark);
+    padding-top: 90px; /* Ajustar para não ficar atrás do header */
+}
+
+.add-question-paper {
+    background-color: var(--background-light);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.add-question-title {
+    color: var(--primary-light);
+}
+
+/* Sobrescreve estilos do Material-UI para campos de texto e selects */
+.add-question-paper .MuiInputBase-root {
+    background-color: var(--background-card) !important; /* Adiciona fundo escuro aos inputs */
+}
+
+/* Garante a cor do texto digitado dentro do input */
+.add-question-paper .MuiInputBase-input {
+    color: var(--text-primary) !important; /* Cor do texto principal no tema escuro */
+}
+
+.add-question-paper .MuiOutlinedInput-notchedOutline {
+    border-color: var(--border-color) !important;
+}
+
+.add-question-paper .MuiInputLabel-root {
+    color: var(--text-secondary) !important; /* Cor dos rótulos (placeholder) */
+}
+
+.add-question-paper .Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--primary-light) !important;
+}
+
+.add-question-paper .Mui-focused .MuiInputLabel-root {
+    color: var(--primary-light) !important;
+}
+
+.add-question-paper .MuiRadio-root {
+    color: var(--primary-color) !important;
+}
+
+.add-question-paper .MuiButton-contained {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.add-question-paper .MuiButton-contained:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+.add-question-paper .MuiFormControlLabel-label {
+    color: var(--text-primary) !important;
+}
+
+/* Estilo para o ícone do Select */
+.add-question-paper .MuiSelect-icon {
+    color: var(--text-secondary) !important;
 } 

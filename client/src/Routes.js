@@ -12,6 +12,7 @@ import Profile from './pages/Profile';
 import PlayerProfile from './pages/PlayerProfile';
 import TwoFactorAuth from './pages/TwoFactorAuth';
 import ProtectedRoute from './components/ProtectedRoute';
+import AddQuestion from './pages/AddQuestion';
 
 function AppRoutes() {
   return (
@@ -28,6 +29,7 @@ function AppRoutes() {
       <Route path="/ranking" element={<ProtectedRoute><Ranking /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/player/:playerId" element={<ProtectedRoute><PlayerProfile /></ProtectedRoute>} />
+      <Route path="/admin/add-question" element={<ProtectedRoute><AddQuestion /></ProtectedRoute>} />
     </Routes>
   );
 }

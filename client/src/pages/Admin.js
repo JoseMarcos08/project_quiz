@@ -11,6 +11,8 @@ function Admin() {
       navigate('/admin/users');
     } else if (option === 'questions') {
       navigate('/admin/questions');
+    } else if (option === 'add-questions') {
+      navigate('/admin/add-question');
     } else {
       // Futuras opções
       console.log(`Selected option: ${option}`);

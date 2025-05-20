@@ -1,0 +1,21 @@
+.add-question-page-container {
+    min-height: 100vh;
+    background-color: var(--background-dark);
+    padding-top: 90px; /* Ajustar para não ficar atrás do header */
+    color: var(--text-primary); /* Cor do texto padrão para a página */
+}
+
+.add-question-paper {
+    /* Deixar o fundo e borda no SX do componente para maior especificidade */
+}
+
+.add-question-title {
+    /* Deixar a cor no SX do componente */
+}
+
+/* Removemos estilos específicos de componentes Material-UI daqui */
+
+/* Ajustes de responsividade se necessário */
+@media (max-width: 600px) {
+    /* Manter ajustes de padding ou layout responsivo aqui */
+} 

@@ -1074,6 +1074,46 @@ app.delete('/admin/questions/:id', authenticateToken, onlyAdmin, (req, res) => {
   });
 });
 
+// Novo endpoint para adicionar perguntas
+app.post("/add-question", authenticateToken, onlyAdmin, (req, res) => {
+    console.log('Recebida requisição para adicionar pergunta:', req.body);
+
+    const { enunciado, alternativa_a, alternativa_b, alternativa_c, alternativa_d, resposta_correta, nivel_dificuldade, categoria } = req.body;
+
+    // Validar se todos os campos obrigatórios estão presentes
+    if (!enunciado || !alternativa_a || !alternativa_b || !alternativa_c || !alternativa_d || !resposta_correta || !nivel_dificuldade || !categoria) {
+        console.log('Campos obrigatórios faltando.');
+        return res.status(400).json({ msg: "Todos os campos são obrigatórios." });
+    }
+
+    // Validar resposta_correta (deve ser A, B, C ou D)
+    const respostasValidas = ['A', 'B', 'C', 'D'];
+    if (!respostasValidas.includes(resposta_correta.toUpperCase())) {
+        console.log('Resposta correta inválida:', resposta_correta);
+        return res.status(400).json({ msg: "Resposta correta inválida. Deve ser A, B, C ou D." });
+    }
+    
+    // Validar nivel_dificuldade (deve ser facil, medio ou dificil)
+    const dificuldadesValidas = ['facil', 'medio', 'dificil'];
+    if (!dificuldadesValidas.includes(nivel_dificuldade.toLowerCase())) {
+         console.log('Nível de dificuldade inválido:', nivel_dificuldade);
+         return res.status(400).json({ msg: "Nível de dificuldade inválido. Deve ser facil, medio ou dificil." });
+    }
+
+    const sql = `INSERT INTO perguntas (enunciado, alternativa_a, alternativa_b, alternativa_c, alternativa_d, resposta_correta, nivel_dificuldade, categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+    const values = [enunciado, alternativa_a, alternativa_b, alternativa_c, alternativa_d, resposta_correta.toUpperCase(), nivel_dificuldade.toLowerCase(), categoria];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao inserir pergunta no banco de dados:', err);
+            res.status(500).json({ msg: "Erro ao adicionar pergunta." });
+            return;
+        }
+        console.log('Pergunta adicionada com sucesso:', result);
+        res.status(201).json({ msg: "Pergunta adicionada com sucesso!", questionId: result.insertId });
+    });
+});
+
 app.listen(3001, () => {
-    console.log("Rodando na porta 3001")
-})
+    console.log("rodando na porta 3001");
+});
