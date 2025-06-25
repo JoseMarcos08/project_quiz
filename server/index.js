@@ -28,7 +28,7 @@ async function sendTwoFactorEmail(email, code) {
         const templateParams = {
             to_email: email,
             code: code,
-            from_name: 'Quiz App'
+            from_name: 'DesenvolveAí'
         };
 
         console.log('Enviando email com os seguintes parâmetros:', {
