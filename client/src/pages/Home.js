@@ -22,18 +22,25 @@ function Home() {
 
   return (
     <div className="home-container">
-      <h1>Bem-vindo!</h1>
-      <div className="button-container">
-        <Link to="/login" className="button">
-          Login
-        </Link>
-        <Link to="/register" className="button">
-          Cadastro
-        </Link>
-        <button className="button guest-button" onClick={entrarComoConvidado}>
-          <span className="guest-icon">?</span>
-          Entrar como convidado
-        </button>
+      <div className="home-logo-block">
+        <div className="home-logo-circle">
+          <img src="/desenvolveai-logo.png" alt="DesenvolveAí Logo" className="home-logo-img" onError={e => { e.target.src = "/logo192.png"; }} />
+        </div>
+        <h1 className="home-title">DesenvolveAí</h1>
+      </div>
+      <div className="home-content">
+        <div className="button-container">
+          <Link to="/login" className="button">
+            CONECTE-SE
+          </Link>
+          <Link to="/register" className="button">
+            CADASTRO
+          </Link>
+          <button className="button guest-button" onClick={entrarComoConvidado}>
+            <span className="guest-icon">?</span>
+            ENTRAR COMO CONVIDADO
+          </button>
+        </div>
       </div>
       <ConfirmModal
         open={modal.open}

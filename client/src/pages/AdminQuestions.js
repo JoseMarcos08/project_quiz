@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Admin.css';
 import ConfirmModal from '../components/ConfirmModal';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 const dificuldades = ['facil', 'medio', 'dificil'];
 const dificuldadeLabel = {
@@ -96,9 +98,9 @@ function AdminQuestions() {
 
   return (
     <div className="admin-container">
+      <button className="back-button" onClick={() => navigate('/admin')}>Voltar</button>
       <header className="admin-header">
         <h1>Perguntas</h1>
-        <button className="back-button" onClick={() => navigate('/admin')}>Voltar</button>
       </header>
       <form className="admin-search-form" onSubmit={handleSearch} style={{ marginBottom: 24, flexWrap: 'wrap' }}>
         <input
@@ -157,7 +159,8 @@ function AdminQuestions() {
                           <td>{pergunta.alternativa_d}</td>
                           <td>{pergunta.resposta_correta}</td>
                           <td>
-                            <button className="delete-button" onClick={() => handleDeleteClick(pergunta.id)}>Excluir</button>
+                            <button className="delete-button" onClick={() => handleDeleteClick(pergunta.id)}><DeleteIcon /></button>
+                            <button className="edit-button" onClick={() => navigate(`/admin/edit-question/${pergunta.id}`)}><EditIcon /></button>
                           </td>
                         </tr>
                       ))}

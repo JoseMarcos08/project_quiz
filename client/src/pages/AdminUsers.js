@@ -60,9 +60,9 @@ function AdminUsers() {
 
   return (
     <div className="admin-container">
+      <button className="back-button" onClick={() => navigate('/admin')}>Voltar</button>
       <header className="admin-header">
         <h1>Usuários</h1>
-        <button className="back-button" onClick={() => navigate('/admin')}>Voltar</button>
       </header>
       <form className="admin-search-form" onSubmit={handleSearch} style={{ marginBottom: 24 }}>
         <input

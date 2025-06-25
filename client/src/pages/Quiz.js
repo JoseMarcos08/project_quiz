@@ -368,65 +368,7 @@ function Quiz() {
     const mensagemDesempenho = getMensagemDesempenho();
     
     return (
-      <div className="quiz-container resultado-container">
-        <h2>{mensagemDesempenho.titulo}</h2>
-        <div className={`resultado-mensagem ${quizState.isGuest ? 'guest' : 'user'}`}>
-          <p className="destaque">{mensagemDesempenho.mensagem}</p>
-          {quizState.isGuest ? (
-            <>
-              <p className="aviso">Como você está jogando como convidado, seus resultados não serão salvos.</p>
-              <p>Para salvar suas pontuações, crie uma conta ou faça login!</p>
-            </>
-          ) : (
-            <p>Seus resultados foram salvos com sucesso!</p>
-          )}
-        </div>
-
-        <div className="resultado-detalhes">
-          <div className="resultado-item">
-            <span className="resultado-label">Pontuação Final:</span>
-            <span className="resultado-valor pontuacao-final">{quizState.pontuacaoFinal} pontos</span>
-          </div>
-          <div className="resultado-item">
-            <span className="resultado-label">Acertos:</span>
-            <span className="resultado-valor acerto">{pontuacaoRef.current} de {quizState.perguntas.length}</span>
-          </div>
-          <div className="resultado-item">
-            <span className="resultado-label">Taxa de Acerto:</span>
-            <span className="resultado-valor acerto">
-              {((pontuacaoRef.current / quizState.perguntas.length) * 100).toFixed(1)}%
-            </span>
-          </div>
-          <div className="resultado-item">
-            <span className="resultado-label">Erros:</span>
-            <span className="resultado-valor erro">{errosRef.current}</span>
-          </div>
-          <div className="resultado-item">
-            <span className="resultado-label">Tempo Total:</span>
-            <span className="resultado-valor tempo">{formatarTempo(quizState.tempoTotal)}</span>
-          </div>
-        </div>
-
-        <div className="botoes-container">
-          <button onClick={reiniciarQuiz} className="quiz-button">
-            Jogar Novamente
-          </button>
-          {quizState.isGuest && (
-            <button onClick={() => navigate('/login')} className="quiz-button login-button">
-              Fazer Login
-            </button>
-          )}
-          <button onClick={confirmarVoltar} className="quiz-button botao-voltar">
-            Voltar ao Dashboard
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <div className="quiz-container">
+      <div className="quiz-page">
         <button 
           className="voltar-button"
           onClick={abrirModal}
@@ -436,9 +378,78 @@ function Quiz() {
           </svg>
           Voltar
         </button>
+        <div className="quiz-container resultado-container">
+          <h2>{mensagemDesempenho.titulo}</h2>
+          <div className={`resultado-mensagem ${quizState.isGuest ? 'guest' : 'user'}`}>
+            <p className="destaque">{mensagemDesempenho.mensagem}</p>
+            {quizState.isGuest ? (
+              <>
+                <p className="aviso">Como você está jogando como convidado, seus resultados não serão salvos.</p>
+                <p>Para salvar suas pontuações, crie uma conta ou faça login!</p>
+              </>
+            ) : (
+              <p>Seus resultados foram salvos com sucesso!</p>
+            )}
+          </div>
 
+          <div className="resultado-detalhes">
+            <div className="resultado-item">
+              <span className="resultado-label">Pontuação Final:</span>
+              <span className="resultado-valor pontuacao-final">{quizState.pontuacaoFinal} pontos</span>
+            </div>
+            <div className="resultado-item">
+              <span className="resultado-label">Acertos:</span>
+              <span className="resultado-valor acerto">{pontuacaoRef.current} de {quizState.perguntas.length}</span>
+            </div>
+            <div className="resultado-item">
+              <span className="resultado-label">Taxa de Acerto:</span>
+              <span className="resultado-valor acerto">{(pontuacaoRef.current / quizState.perguntas.length * 100).toFixed(1)}%</span>
+            </div>
+            <div className="resultado-item">
+              <span className="resultado-label">Erros:</span>
+              <span className="resultado-valor erro">{errosRef.current}</span>
+            </div>
+            <div className="resultado-item">
+              <span className="resultado-label">Tempo Total:</span>
+              <span className="resultado-valor tempo">{formatarTempo(quizState.tempoTotal)}</span>
+            </div>
+          </div>
+
+          <div className="botoes-container">
+            <button onClick={reiniciarQuiz} className="quiz-button">
+              Jogar Novamente
+            </button>
+            {quizState.isGuest && (
+              <button onClick={() => navigate('/login')} className="quiz-button login-button">
+                Fazer Login
+              </button>
+            )}
+            <button onClick={confirmarVoltar} className="quiz-button botao-voltar">
+              Voltar ao Dashboard
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="quiz-page">
+      <button 
+        className="voltar-button"
+        onClick={abrirModal}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Voltar
+      </button>
+      <div className="quiz-container">
         <div className="quiz-header">
-          <h2>Pergunta {quizState.perguntaAtual + 1} de {quizState.perguntas.length}</h2>
+          <h2 className="quiz-question-counter">
+            Pergunta {quizState.perguntaAtual + 1} de {quizState.perguntas.length}
+          </h2>
+
           <div className="quiz-info">
             <p className="tempo-restante">Tempo: {formatarTempo(quizState.tempoRestante)}</p>
             <p className="pontuacao">Pontuação: {pontuacaoRef.current}</p>
@@ -521,7 +532,7 @@ function Quiz() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

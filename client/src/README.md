@@ -1,11 +1,12 @@
-# Quiz App - Frontend
+# DesenvolveAí - Frontend
 
-Uma aplicação de quiz moderna e interativa desenvolvida em React, com design personalizado e experiência de usuário aprimorada.
+Uma aplicação de quiz moderna e interativa desenvolvida em React, focada em testar conhecimentos de desenvolvimento de forma divertida e desafiadora.
 
 ## 🎨 Design e Personalização
 
 ### Logo e Identidade Visual
 - **Logo**: Utiliza o logo oficial da aplicação (`/logo192.png` e `/logo512.png`)
+- **Nome**: DesenvolveAí - Plataforma de Quiz para Desenvolvedores
 - **Cores**: Paleta personalizada baseada em tons de Indigo (#6366F1, #4F46E5, #818CF8)
 - **Tema**: Design dark mode moderno com gradientes sofisticados
 
@@ -15,6 +16,7 @@ Uma aplicação de quiz moderna e interativa desenvolvida em React, com design p
 - **Localização**: `src/components/Header.js`
 - **Funcionalidades**:
   - Logo clicável que redireciona para a página inicial
+  - Nome "DesenvolveAí" com design personalizado
   - Design responsivo
   - Efeitos de hover e animações suaves
   - Integração com todas as páginas da aplicação
@@ -23,6 +25,7 @@ Uma aplicação de quiz moderna e interativa desenvolvida em React, com design p
 - **Localização**: `src/components/LoadingSpinner.js`
 - **Características**:
   - Animação de loading personalizada com cores do tema
+  - Texto padrão "Carregando DesenvolveAí..."
   - Múltiplos tamanhos (small, medium, large)
   - Texto customizável
   - Efeitos de pulse e rotação
@@ -30,22 +33,27 @@ Uma aplicação de quiz moderna e interativa desenvolvida em React, com design p
 ### Páginas Atualizadas
 
 #### Home Page
-- Header com logo integrado
+- Header com logo e nome "DesenvolveAí"
+- Mensagem de boas-vindas personalizada
+- Subtítulo explicativo sobre a plataforma
 - Design responsivo e moderno
 - Botões com gradientes personalizados
 - Animações suaves
 
 #### Dashboard
 - Header com menu de usuário
+- Título "Bem-vindo ao DesenvolveAí!"
 - Interface limpa e organizada
 - Botões de ação com design consistente
 
 #### Login/Register
+- Títulos atualizados com "DesenvolveAí"
 - Formulários com design moderno
 - Validação visual aprimorada
 - Cores e gradientes personalizados
 
 #### Quiz
+- Título "DesenvolveAí - Pergunta X de Y"
 - Interface de jogo redesenhada
 - Estatísticas em tempo real
 - Resultados com design atrativo
@@ -63,9 +71,10 @@ Uma aplicação de quiz moderna e interativa desenvolvida em React, com design p
 - Sistema de pontuação dinâmico
 - Timer por pergunta
 - Histórico de partidas
+- Foco em questões de desenvolvimento
 
 ### Ranking e Perfil
-- Ranking global de jogadores
+- Ranking global de desenvolvedores
 - Perfil personalizado
 - Estatísticas detalhadas
 - Histórico de desempenho
@@ -100,12 +109,12 @@ Uma aplicação de quiz moderna e interativa desenvolvida em React, com design p
 ```
 src/
 ├── components/
-│   ├── Header.js              # Componente de cabeçalho com logo
+│   ├── Header.js              # Componente de cabeçalho com logo e nome
 │   ├── LoadingSpinner.js      # Componente de loading personalizado
 │   ├── ConfirmModal.js        # Modal de confirmação
 │   └── ProtectedRoute.js      # Rotas protegidas
 ├── pages/
-│   ├── Home.js               # Página inicial
+│   ├── Home.js               # Página inicial com boas-vindas
 │   ├── Login.js              # Página de login
 │   ├── Register.js           # Página de registro
 │   ├── Dashboard.js          # Dashboard principal
@@ -164,4 +173,4 @@ Para alterar as cores do tema, edite as variáveis CSS em `src/styles/global.css
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT.
+Este projeto está sob a licença MIT. 

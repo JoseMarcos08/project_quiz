@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 import '../styles/Dashboard.css';
 
 function Dashboard() {
@@ -36,7 +37,10 @@ function Dashboard() {
   };
 
   const confirmarLogout = () => {
+    // Remover todos os dados de autenticação
     localStorage.removeItem('userEmail');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     navigate('/');
   };
 
@@ -81,12 +85,12 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <header className="dashboard-header">
+      <Header>
         <div className="user-menu">
           <button className="user-button" onClick={toggleDropdown}>
             {isGuest ? '?' : userEmail.charAt(0).toUpperCase()}
           </button>
-          <div className={`user-dropdown ${isDropdownOpen ? 'active' : ''}`}>
+          <div className={`user-dropdown ${isDropdownOpen ? 'active' : ''}`}> 
             {!isGuest && (
               <a href="#" className="dropdown-item" onClick={handleProfile}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -103,8 +107,12 @@ function Dashboard() {
             </a>
           </div>
         </div>
-      </header>
+      </Header>
       <main className="dashboard-content">
+        <div className="dashboard-welcome">
+          <h2>Bem-vindo ao DesenvolveAí!</h2>
+          <p>Escolha uma opção para começar:</p>
+        </div>
         <div className="quiz-buttons">
           <button className="quiz-button" onClick={() => navigate('/ranking')}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -118,7 +126,7 @@ function Dashboard() {
             </svg>
             Histórico
           </button>
-          <button className="quiz-button">
+          <button className="quiz-button" onClick={() => navigate('/como-jogar')}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>

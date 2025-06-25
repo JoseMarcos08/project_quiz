@@ -1,16 +1,37 @@
 :root {
-  --primary-color: #8B5CF6;
-  --primary-hover: #7C3AED;
-  --primary-light: #A78BFA;
-  --background-dark: #0F172A;
-  --background-light: #1E293B;
-  --background-card: #334155;
-  --text-primary: #F8FAFC;
-  --text-secondary: #94A3B8;
-  --error-color: #EF4444;
-  --success-color: #10B981;
-  --border-color: rgba(139, 92, 246, 0.2);
-  --shadow-color: rgba(139, 92, 246, 0.1);
+  /* Cores principais baseadas no logo - tons de roxo/azul */
+  --primary-color: #6366F1; /* Indigo mais vibrante */
+  --primary-hover: #4F46E5; /* Indigo mais escuro */
+  --primary-light: #818CF8; /* Indigo mais claro */
+  --primary-dark: #3730A3; /* Indigo muito escuro */
+  
+  /* Cores de fundo - gradientes mais sofisticados */
+  --background-dark: #0F172A; /* Slate 900 */
+  --background-light: #1E293B; /* Slate 800 */
+  --background-card: #334155; /* Slate 700 */
+  --background-lighter: #475569; /* Slate 600 */
+  
+  /* Cores de texto */
+  --text-primary: #F8FAFC; /* Slate 50 */
+  --text-secondary: #94A3B8; /* Slate 400 */
+  --text-muted: #64748B; /* Slate 500 */
+  
+  /* Cores de estado */
+  --error-color: #EF4444; /* Red 500 */
+  --success-color: #10B981; /* Emerald 500 */
+  --warning-color: #F59E0B; /* Amber 500 */
+  --info-color: #3B82F6; /* Blue 500 */
+  
+  /* Cores de borda e sombra */
+  --border-color: rgba(99, 102, 241, 0.2); /* Indigo com transparência */
+  --shadow-color: rgba(99, 102, 241, 0.15); /* Sombra indigo */
+  --shadow-light: rgba(99, 102, 241, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  
+  /* Gradientes personalizados */
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  --gradient-secondary: linear-gradient(135deg, var(--background-light), var(--background-card));
+  --gradient-accent: linear-gradient(135deg, var(--primary-light), var(--primary-color));
 }
 
 * {
@@ -26,8 +47,9 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   background-image: 
-    radial-gradient(circle at 100% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 0% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
 }
 
 .container {
@@ -64,9 +86,17 @@ h1 {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 10px var(--shadow-color);
+  /* Fallback para navegadores que não suportam background-clip */
+  @supports not (-webkit-background-clip: text) {
+    color: var(--primary-light);
+    background: none;
+    -webkit-text-fill-color: initial;
+  }
 }
 
 .form-field {
@@ -94,7 +124,7 @@ h1 {
 .button {
   padding: 1rem 2rem;
   font-size: 1rem;
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  background: var(--gradient-primary);
   color: white;
   border: none;
   border-radius: 12px;
@@ -288,4 +318,12 @@ h1 {
 
 .modal-message p {
   line-height: 1.5;
+}
+
+.login-page .container {
+  padding-top: 100px; /* Espaço para o header fixo */
+}
+
+.register-page .container {
+  padding-top: 100px; /* Espaço para o header fixo */
 } 

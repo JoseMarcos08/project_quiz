@@ -1,7 +1,7 @@
 .add-question-page-container {
     min-height: 100vh;
     background-color: var(--background-dark);
-    padding-top: 90px; /* Ajustar para não ficar atrás do header */
+    padding-top: 100px; /* Ajustar para não ficar atrás do header */
     color: var(--text-primary); /* Cor do texto padrão para a página */
 }
 

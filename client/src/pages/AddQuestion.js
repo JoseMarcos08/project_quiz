@@ -115,6 +115,9 @@ const AddQuestion = () => {
               >
                 Adicionar Nova Pergunta
               </Typography>
+              <Typography variant="subtitle1" align="center" sx={{ color: 'var(--text-secondary)', mb: 2 }}>
+                O ID será gerado automaticamente
+              </Typography>
               <Box sx={{ width: 48 }} />
             </Box>
             {status.message && (

@@ -1060,6 +1060,57 @@ app.get('/admin/questions', authenticateToken, onlyAdmin, (req, res) => {
   });
 });
 
+// Buscar pergunta específica (admin)
+app.get('/admin/questions/:id', authenticateToken, onlyAdmin, (req, res) => {
+  const id = req.params.id;
+  db.query('SELECT id, enunciado, alternativa_a, alternativa_b, alternativa_c, alternativa_d, resposta_correta, nivel_dificuldade, categoria FROM perguntas WHERE id = ?', [id], (err, result) => {
+    if (err) {
+      return res.status(500).json({ msg: 'Erro ao buscar pergunta.' });
+    }
+    if (!result || result.length === 0) {
+      return res.status(404).json({ msg: 'Pergunta não encontrada.' });
+    }
+    res.json(result[0]);
+  });
+});
+
+// Atualizar pergunta (admin)
+app.put('/admin/questions/:id', authenticateToken, onlyAdmin, (req, res) => {
+  const id = req.params.id;
+  const { enunciado, alternativa_a, alternativa_b, alternativa_c, alternativa_d, resposta_correta, nivel_dificuldade, categoria } = req.body;
+
+  // Validar se todos os campos obrigatórios estão presentes
+  if (!enunciado || !alternativa_a || !alternativa_b || !alternativa_c || !alternativa_d || !resposta_correta || !nivel_dificuldade || !categoria) {
+    return res.status(400).json({ msg: "Todos os campos são obrigatórios." });
+  }
+
+  // Validar resposta_correta (deve ser A, B, C ou D)
+  const respostasValidas = ['A', 'B', 'C', 'D'];
+  if (!respostasValidas.includes(resposta_correta.toUpperCase())) {
+    return res.status(400).json({ msg: "Resposta correta inválida. Deve ser A, B, C ou D." });
+  }
+
+  // Validar nivel_dificuldade (deve ser facil, medio ou dificil)
+  const dificuldadesValidas = ['facil', 'medio', 'dificil', 'aleatorio'];
+  if (!dificuldadesValidas.includes(nivel_dificuldade.toLowerCase())) {
+    return res.status(400).json({ msg: "Nível de dificuldade inválido. Deve ser facil, medio, dificil ou aleatorio." });
+  }
+
+  const sql = `UPDATE perguntas SET enunciado = ?, alternativa_a = ?, alternativa_b = ?, alternativa_c = ?, alternativa_d = ?, resposta_correta = ?, nivel_dificuldade = ?, categoria = ? WHERE id = ?`;
+  const values = [enunciado, alternativa_a, alternativa_b, alternativa_c, alternativa_d, resposta_correta.toUpperCase(), nivel_dificuldade.toLowerCase(), categoria, id];
+
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      console.error('Erro ao atualizar pergunta:', err);
+      return res.status(500).json({ msg: "Erro ao atualizar pergunta." });
+    }
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ msg: "Pergunta não encontrada." });
+    }
+    res.json({ msg: "Pergunta atualizada com sucesso!" });
+  });
+});
+
 // Excluir pergunta (admin)
 app.delete('/admin/questions/:id', authenticateToken, onlyAdmin, (req, res) => {
   const id = req.params.id;

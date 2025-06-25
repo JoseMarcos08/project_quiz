@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 import '../styles/Ranking.css';
 
 function Ranking() {
@@ -182,114 +183,93 @@ function Ranking() {
   };
 
   return (
-    <div className="ranking-container">
-      <button 
-        className="voltar-button"
-        onClick={() => navigate('/dashboard')}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Voltar
-      </button>
-
-      <div className="ranking-content">
-        <h1>Ranking Global</h1>
-        
-        {carregando ? (
-          <div className="carregando">
-            <p>Carregando rankings...</p>
-          </div>
-        ) : erro ? (
-          <div className="erro-mensagem">
-            <p>{erro}</p>
-            <button 
-              className="tentar-novamente-button"
-              onClick={() => buscarRankings()}
-            >
-              Tentar Novamente
-            </button>
-          </div>
-        ) : rankings.length === 0 ? (
-          <div className="sem-dados">
-            <p>Nenhuma partida encontrada no ranking.</p>
-            <p>Jogue algumas partidas para aparecer no ranking!</p>
-            <button 
-              className="resetar-filtros-button"
-              onClick={resetarFiltros}
-            >
-              Resetar Filtros
-            </button>
-          </div>
-        ) : (
-          <>
-            <div className="filtros-container">
-              <button 
-                className="toggle-filtros-button"
-                onClick={toggleFiltros}
-              >
-                {mostrarFiltros ? 'Ocultar Filtros' : 'Mostrar Filtros'}
+    <div className="ranking-page">
+      <Header />
+      <div className="ranking-container">
+        <button 
+          className="voltar-button"
+          onClick={() => navigate(-1)}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Voltar
+        </button>
+        <div className="ranking-content">
+          <h1>Ranking Global - DesenvolveAí</h1>
+          <p className="ranking-subtitle">Veja os melhores desenvolvedores da plataforma</p>
+          
+          {carregando ? (
+            <div className="carregando">
+              <p>Carregando ranking...</p>
+            </div>
+          ) : erro ? (
+            <div className="erro">
+              <p>{erro}</p>
+              <button onClick={buscarRankings} className="retry-button">
+                Tentar Novamente
               </button>
-              
+            </div>
+          ) : (
+            <>
+              <div className="ranking-controls">
+                <div className="ranking-tabs">
+                  <button 
+                    className={`tab ${tipoRanking === 'geral' ? 'active' : ''}`}
+                    onClick={() => setTipoRanking('geral')}
+                  >
+                    Ranking Geral
+                  </button>
+                  <button 
+                    className={`tab ${tipoRanking === 'melhor' ? 'active' : ''}`}
+                    onClick={() => setTipoRanking('melhor')}
+                  >
+                    Melhores Partidas
+                  </button>
+                </div>
+
+                <button 
+                  className="filtros-button"
+                  onClick={toggleFiltros}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                  </svg>
+                  Filtros
+                </button>
+              </div>
+
               {mostrarFiltros && (
-                <div className="filtros-wrapper">
-                  <div className="filtros-grupos">
-                    <div className="filtro-grupo">
-                      <label htmlFor="tipo-ranking">Tipo de Ranking:</label>
-                      <select 
-                        id="tipo-ranking"
-                        value={tipoRanking}
-                        onChange={(e) => setTipoRanking(e.target.value)}
-                      >
-                        <option value="geral">Pontuação Geral</option>
-                        {(filtroDificuldade !== 'todas' || filtroQuantidade !== 'todas') && (
-                          <option value="melhor">Melhor Partida</option>
-                        )}
-                      </select>
-                    </div>
-                    
-                    <div className="filtro-grupo">
-                      <label htmlFor="filtro-dificuldade">Dificuldade:</label>
-                      <select 
-                        id="filtro-dificuldade"
-                        value={filtroDificuldade}
-                        onChange={(e) => {
-                          setFiltroDificuldade(e.target.value);
-                          if (e.target.value === 'todas' && filtroQuantidade === 'todas') {
-                            setTipoRanking('geral');
-                          }
-                        }}
-                      >
-                        <option value="todas">Todas</option>
-                        <option value="facil">Fácil</option>
-                        <option value="medio">Médio</option>
-                        <option value="dificil">Difícil</option>
-                        <option value="aleatorio">Aleatório</option>
-                      </select>
-                    </div>
-                    
-                    <div className="filtro-grupo">
-                      <label htmlFor="filtro-quantidade">Quantidade de Perguntas:</label>
-                      <select 
-                        id="filtro-quantidade"
-                        value={filtroQuantidade}
-                        onChange={(e) => {
-                          setFiltroQuantidade(e.target.value);
-                          if (e.target.value === 'todas' && filtroDificuldade === 'todas') {
-                            setTipoRanking('geral');
-                          }
-                        }}
-                      >
-                        <option value="todas">Todas</option>
-                        <option value="10">10 perguntas</option>
-                        <option value="25">25 perguntas</option>
-                        <option value="50">50 perguntas</option>
-                        <option value="75">75 perguntas</option>
-                        <option value="100">100 perguntas</option>
-                      </select>
-                    </div>
+                <div className="filtros-panel">
+                  <div className="filtro-grupo">
+                    <label>Dificuldade:</label>
+                    <select
+                      value={filtroDificuldade}
+                      onChange={(e) => setFiltroDificuldade(e.target.value)}
+                    >
+                      <option value="todas">Todas</option>
+                      <option value="aleatorio">Aleatório</option>
+                      <option value="facil">Fácil</option>
+                      <option value="medio">Médio</option>
+                      <option value="dificil">Difícil</option>
+                    </select>
                   </div>
-                  
+  
+                  <div className="filtro-grupo">
+                    <label>Quantidade:</label>
+                    <select
+                      value={filtroQuantidade}
+                      onChange={(e) => setFiltroQuantidade(e.target.value)}
+                    >
+                      <option value="todas">Todas</option>
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="75">75</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+
                   <button 
                     className="resetar-filtros-button"
                     onClick={resetarFiltros}
@@ -298,13 +278,17 @@ function Ranking() {
                   </button>
                 </div>
               )}
-            </div>
-            
-            <div className="ranking-tabela" data-tipo={tipoRanking}>
-              {renderizarConteudoRanking()}
-            </div>
-          </>
-        )}
+
+              {rankingsFiltrados.length === 0 ? (
+                <div className="sem-dados">
+                  <p>Nenhum ranking encontrado com os filtros selecionados.</p>
+                </div>
+              ) : (
+                renderizarConteudoRanking()
+              )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

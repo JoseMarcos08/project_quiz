@@ -4,21 +4,6 @@
   position: relative;
 }
 
-.dashboard-header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 70px;
-  background-color: var(--background-light);
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 2rem;
-  z-index: 1000;
-}
-
 .user-menu {
   position: relative;
 }
@@ -27,7 +12,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  background: var(--gradient-primary);
   border: none;
   color: white;
   font-size: 1.2rem;
@@ -98,13 +83,34 @@
 }
 
 .dashboard-content {
-  padding: 90px 2rem 2rem;
+  padding: 100px 2rem 2rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+}
+
+.dashboard-welcome {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-welcome h2 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.dashboard-welcome p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin: 0;
 }
 
 .quiz-buttons {
@@ -121,7 +127,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  background: var(--gradient-primary);
   color: white;
   border: none;
   border-radius: 12px;
@@ -267,12 +273,8 @@
 }
 
 @media (max-width: 768px) {
-  .dashboard-header {
-    padding: 0 1rem;
-  }
-
   .dashboard-content {
-    padding: 90px 1rem 1rem;
+    padding: 100px 1rem 1rem;
   }
 
   .quiz-button {
@@ -285,7 +287,7 @@
 .add-question-container {
     min-height: 100vh;
     background-color: var(--background-dark);
-    padding-top: 90px; /* Ajustar para não ficar atrás do header */
+    padding-top: 100px; /* Ajustar para não ficar atrás do header */
 }
 
 .add-question-paper {
@@ -344,4 +346,14 @@
 /* Estilo para o ícone do Select */
 .add-question-paper .MuiSelect-icon {
     color: var(--text-secondary) !important;
+}
+
+.dashboard-content.dashboard-no-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  gap: 0;
 } 

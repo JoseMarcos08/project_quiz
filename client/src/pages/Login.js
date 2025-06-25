@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 import '../styles/Login.css';
 import { useState } from 'react';
 import ConfirmModal from '../components/ConfirmModal';
@@ -70,52 +71,55 @@ function Login() {
   });
 
   return (
-    <div className="container">
-      <button 
-        className="voltar-button"
-        onClick={() => navigate('/')}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Voltar
-      </button>
-      <div className="form-container">
-        <h1>Login</h1>
-        <Formik
-          initialValues={{ email: "", password: "" }}
-          onSubmit={handleClickLogin}
-          validationSchema={validationLogin}
+    <div className="login-page">
+      <Header />
+      <div className="container">
+        <button 
+          className="voltar-button"
+          onClick={() => navigate('/')}
         >
-          <Form className='login-form'>
-            <div className={`login-form-group${serverError.email ? ' error-field' : ''}`}>
-              <Field name="email" className={`form-field${serverError.email ? ' error-field' : ''}`} placeholder="Email" />
-              <ErrorMessage
-                component="span"
-                name="email"
-                className='form-error'
-              />
-              {serverError.email && (
-                <span className='form-error server-error'>{serverError.email}</span>
-              )}
-            </div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Voltar
+        </button>
+        <div className="form-container">
+          <h1>Login - DesenvolveAí</h1>
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            onSubmit={handleClickLogin}
+            validationSchema={validationLogin}
+          >
+            <Form className='login-form'>
+              <div className={`login-form-group${serverError.email ? ' error-field' : ''}`}>
+                <Field name="email" className={`form-field${serverError.email ? ' error-field' : ''}`} placeholder="Email" />
+                <ErrorMessage
+                  component="span"
+                  name="email"
+                  className='form-error'
+                />
+                {serverError.email && (
+                  <span className='form-error server-error'>{serverError.email}</span>
+                )}
+              </div>
 
-            <div className='login-form-group'>
-              <Field name="password" className="form-field" placeholder="Senha" />
-              <ErrorMessage
-                component="span"
-                name="password"
-                className='form-error'
-              />
-            </div>
-            {serverError.general && (
-              <span className='form-error server-error'>{serverError.general}</span>
-            )}
-            <button className='button' type='submit'>Entrar</button>
-          </Form>
-        </Formik>
-        <div className="link-container">
-          <Link to="/" className="link">Voltar para a página inicial</Link>
+              <div className='login-form-group'>
+                <Field name="password" className="form-field" placeholder="Senha" />
+                <ErrorMessage
+                  component="span"
+                  name="password"
+                  className='form-error'
+                />
+              </div>
+              {serverError.general && (
+                <span className='form-error server-error'>{serverError.general}</span>
+              )}
+              <button className='button' type='submit'>Entrar</button>
+            </Form>
+          </Formik>
+          <div className="link-container">
+            <Link to="/" className="link">Voltar para a página inicial</Link>
+          </div>
         </div>
       </div>
       <ConfirmModal
